@@ -5,9 +5,9 @@ const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt} =
 //dummy data
 
 const books = [
-    {name: 'book_1', genre: 'genre_1', id: '1'},
-    {name: 'book_2', genre: 'genre_2', id: '2'},
-    {name: 'book_3', genre: 'genre_3', id: '3'},
+    {name: 'book_1', genre: 'genre_1', id: '1', authorId: '1'},
+    {name: 'book_2', genre: 'genre_2', id: '2', authorId: '2'},
+    {name: 'book_3', genre: 'genre_3', id: '3', authorId: '3'},
 
 ]
 
@@ -23,7 +23,13 @@ const BookType = new GraphQLObjectType({
     fields:()=>({
         id:{type:GraphQLID},
         name:{type:GraphQLString},
-        genre:{type:GraphQLString}
+        genre:{type:GraphQLString},
+        author:{
+            type: AuthorType,
+            resolve(parent, args){
+                return authors.find(e => e.id === parent.id)
+            }
+        }
     })
 })
 const AuthorType = new GraphQLObjectType({
