@@ -1,3 +1,5 @@
 node_modules
 
 schema/mongo.txt
+
+.env

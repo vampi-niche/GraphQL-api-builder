@@ -1,12 +1,14 @@
 const express = require('express')
 const graphqlHttp = require('express-graphql').graphqlHTTP
+const dotenv = require('dotenv');
 const schema = require('./schema/schema')
 
 const mongoose = require('mongoose')
 
 const app = express()
+dotenv.config();
 
-mongoose.connect('mongodb+srv://vamliniche:Test_Vamlil@learning-graphql-mongod.xehkic4.mongodb.net/')
+mongoose.connect(process.env.MongoDB_URI)
 
 mongoose.connection.once('open', ()=>{
 
